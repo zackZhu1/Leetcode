@@ -1,0 +1,10 @@
+package Graph;
+
+public class UnionFind {
+	private int[] ids;
+	private int[] sizes;
+	
+	public UnionFind(int n) {
+		
+	}
+}

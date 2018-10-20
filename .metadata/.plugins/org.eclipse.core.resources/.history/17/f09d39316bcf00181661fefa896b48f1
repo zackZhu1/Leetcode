@@ -1,0 +1,11 @@
+package Graph;
+
+public class Num200 {
+	public int numIslands(char[][] grid) {
+		UnionFind uf = new UnionFind();
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

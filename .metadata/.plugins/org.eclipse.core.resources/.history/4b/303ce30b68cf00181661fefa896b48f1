@@ -1,0 +1,61 @@
+package Graph;
+
+public class UnionFind {
+	private int[] ids;
+	private int[] sizes;
+	
+	public UnionFind(int n) {
+		ids = new int[n];
+		sizes = new int[n];
+		for (int i = 0; i < n; i++) {
+			ids[i] = i;
+			sizes[i] = 1;
+		}
+	}
+	
+	public int root(int a) {
+		int id = a;
+		while (ids[id] != id) {
+			id = ids[id];
+		}
+		return id;
+	}
+	
+	public void union(int a, int b) {
+		int rootA = root(a);
+		int rootB = root(b);
+		if (sizes[rootA] >= sizes[rootB]) {
+			// merge rootB into rootA
+			ids[rootB] = rootA;
+			sizes[rootA] += sizes[rootB];
+		} else {
+			// merge rootA into rootB
+			ids[rootA] = rootB;
+			sizes[rootB] += sizes[rootA];
+		}	
+	}
+	
+	public boolean find(int a, int b) {
+		return root(a) == root(b);
+	}
+	
+	public void printIds() {
+		for (int id : ids) {
+			System.out.print(id + " ");
+		}
+		System.out.println();
+	}
+	
+	public void printSizes() {
+		for (int size : sizes) {
+			System.out.print(size + " ");
+		}
+		System.out.println();
+	}
+	
+	public static void main(String[] args) {
+		UnionFind uf = new UnionFind(10);
+		uf.union(3, 4); uf.printIds();
+		uf.union(4, 9); 
+	}
+}
