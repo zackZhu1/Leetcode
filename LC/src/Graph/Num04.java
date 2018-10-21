@@ -1,6 +1,7 @@
 package Graph;
 import java.util.*;
 
+// bi-directional BFS1
 public class Num04 {
 	public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = getDict(wordList);
