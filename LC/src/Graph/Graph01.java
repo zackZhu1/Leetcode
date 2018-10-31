@@ -2,7 +2,10 @@ package Graph;
 import java.util.*;
 
 // reverse a graph
-// https://www.geeksforgeeks.org/transpose-graph/
+/*
+ * 遍历图 每次将边反向即可
+ * https://www.geeksforgeeks.org/transpose-graph/
+ */
 public class Graph01 {
 	public static void reverseGraph(Map<Integer, List<Integer>> graph, Map<Integer, List<Integer>> reversedGraph) {
 		for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {

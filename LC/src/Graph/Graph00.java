@@ -2,6 +2,11 @@ package Graph;
 import java.util.*;
 
 // topological sort by using DFS
+/*
+ *  (a,b) or a -> b
+ *  if a -> b means a depends on b, run DFS directly
+ *  if a -> b means b depends on a, construct a reversed graph and then run DFS
+ */
 public class Graph00 {
 	enum State {
 		UNVISITED, VISITING, VISITED;

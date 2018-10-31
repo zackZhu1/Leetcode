@@ -2,7 +2,11 @@ package Graph;
 import java.util.*;
 
 // course schedule
-// topological sort by using DFS
+/*
+ * <a, b> means a depends on b
+ * step1: construct the graph
+ * step2: topological sort by using DFS
+ */
 public class Graph02 {
 	public static boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = buildGraph(numCourses, prerequisites);
@@ -10,18 +14,17 @@ public class Graph02 {
     }
 	
 	private static boolean isValid(int numCourses, Map<Integer, List<Integer>> graph) {
+		Set<Integer> visited = new HashSet<>();
+		Set<Integer> visiting = new HashSet<>();
 		for (int i = 0; i < numCourses; i++) {
-			Set<Integer> visited = new HashSet<>();
-			Set<Integer> unvisited = new HashSet<>();
-			Set<Integer> visiting = new HashSet<>();
-			if (!dfs(i, graph, visited, unvisited, visiting)) {
+			if (!dfs(i, graph, visited, visiting)) {
 				return false;
 			}
 		}
 		return true;
 	}
 	
-	private static boolean dfs(int vertex, Map<Integer, List<Integer>> graph, Set<Integer> visited, Set<Integer> unvisited, Set<Integer> visiting) {
+	private static boolean dfs(int vertex, Map<Integer, List<Integer>> graph, Set<Integer> visited, Set<Integer> visiting) {
 		if (visited.contains(vertex)) {
 			return true;
 		}
@@ -31,7 +34,7 @@ public class Graph02 {
 		visiting.add(vertex);
 		List<Integer> dependencies = graph.get(vertex);
 		for (Integer dependency : dependencies) {
-			if (!dfs(dependency, graph, visited, unvisited, visiting)) {
+			if (!dfs(dependency, graph, visited, visiting)) {
 				return false;
 			}
 		}
