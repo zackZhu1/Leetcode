@@ -3,12 +3,12 @@ package Graph;
 import java.util.*;
 import java.util.Map.Entry;
 
-// Minimum time to finish all the tasks
+// Minimum time to finish all the tasks, each of the task takes same amount of time
 public class Graph08 {
 	public static int getMinimumTime(Map<Integer, List<Integer>> graph) {
 		Map<Integer, Integer> indegrees = getIndegrees(graph);
 		// return topologicalSort(graph, indegrees);
-		return topologicalSort2(getDependcies(graph));
+		return topologicalSort2(getDependencies(graph));
 	}
 	
 	// solution1: topological sort by BFS => get the number of levels.
@@ -83,7 +83,7 @@ public class Graph08 {
 		return max;
 	}
 	
-	private static Map<Integer, List<Integer>> getDependcies(Map<Integer, List<Integer>> graph) {
+	private static Map<Integer, List<Integer>> getDependencies(Map<Integer, List<Integer>> graph) {
 		Map<Integer, List<Integer>> dependencies = new HashMap<>();
 		for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
 			dependencies.putIfAbsent(entry.getKey(), new ArrayList<>());
