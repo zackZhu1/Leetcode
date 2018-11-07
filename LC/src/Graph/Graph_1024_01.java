@@ -10,6 +10,7 @@ public class Graph_1024_01 {
 		TreeNode left, right;
 	}
 	
+	// solution1
 	public static void findAllPaths(TreeNode root, List<TreeNode> path, List<List<TreeNode>> allPath) {
 		// base case
 		if (root == null) {
@@ -28,6 +29,24 @@ public class Graph_1024_01 {
 		path.remove(root); // backtracking
 	}
 	
+	// solution2:
+	public static void findAllPaths2(TreeNode root, List<TreeNode> path, List<List<TreeNode>> allPath) {
+		// base case 
+		if (root == null) {
+			return;
+		}
+		if (root.left == null && root.right == null) {
+			allPath.add(new ArrayList<>(path));
+			return;
+		}
+		path.add(root.left);
+		findAllPaths2(root.left, path, allPath);
+		path.remove(root.left);
+		path.add(root.right);
+		findAllPaths2(root.right, path, allPath);
+		path.remove(root.right);
+	}
+	
 	/*         1
 	 *      2       3
 	 *    4  5
@@ -44,9 +63,14 @@ public class Graph_1024_01 {
 		root.left = node2; root.right = node3;
 		node2.left = node4; node2.right = node5;
 		node4.left = node6;
+		
 		List<TreeNode> curPath = new ArrayList<>();
 		List<List<TreeNode>> allPath = new ArrayList<>();
-		findAllPaths(root, curPath, allPath);
+		//findAllPaths(root, curPath, allPath);
+		
+		curPath.add(root);
+		findAllPaths2(root, curPath, allPath);
+		
 		
 		for (List<TreeNode> path : allPath) {
 			for (TreeNode node : path) {
